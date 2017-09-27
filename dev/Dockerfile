@@ -73,7 +73,7 @@ RUN apt-get update -yqq \
   && mv composer.phar /usr/local/bin/composer
 
 
-RUN echo xdebug.max_nesting_level=256 >> /etc/php5/mods-available/xdebug.ini
+RUN echo xdebug.max_nesting_level=256 >> /usr/local/etc/php/conf.d/xdebug.ini
 
 # Clear
 RUN apt-get clean \
