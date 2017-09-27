@@ -71,7 +71,7 @@ RUN apt-get update -yqq \
   && echo "xdebug.max_nesting_level=256" >> /usr/local/etc/php/conf.d/xdebug.ini \
   && pecl clear-cache \
   && curl -sS https://getcomposer.org/installer | php \
-  && mv composer.phar /usr/local/bin/composer
+  && mv composer.phar /usr/local/bin/composer \
   && apt-get clean \
   && apt-mark manual $doNotUninstall \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps \
