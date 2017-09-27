@@ -68,15 +68,11 @@ RUN apt-get update -yqq \
   && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini \
   && echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/xdebug.ini \
   && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/xdebug.ini \
+  && echo "xdebug.max_nesting_level=256" >> /usr/local/etc/php/conf.d/xdebug.ini \
   && pecl clear-cache \
   && curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer
-
-
-RUN echo xdebug.max_nesting_level=256 >> /usr/local/etc/php/conf.d/xdebug.ini
-
-# Clear
-RUN apt-get clean \
+  && apt-get clean \
   && apt-mark manual $doNotUninstall \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps \
   && docker-php-source delete \

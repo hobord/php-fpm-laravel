@@ -69,10 +69,8 @@ RUN apt-get update -yqq \
   && docker-php-ext-enable memcached \
   && pecl clear-cache \
   && curl -sS https://getcomposer.org/installer | php \
-  && mv composer.phar /usr/local/bin/composer
-
-# Clear
-RUN apt-get clean \
+  && mv composer.phar /usr/local/bin/composer \
+  && apt-get clean \
   && apt-mark manual $doNotUninstall \
   && apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false $buildDeps \
   && docker-php-source delete \
