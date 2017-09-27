@@ -4,6 +4,7 @@ MAINTAINER Balazs Szabo <balazs.szabo@gmail.com>
 
 RUN apt-get update -yqq \
   && buildDeps=" \
+    libmemcached-dev \
     libjpeg62-turbo-dev \
     libpq-dev \
     libcurl4-openssl-dev \
