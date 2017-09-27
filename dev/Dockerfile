@@ -3,7 +3,7 @@ FROM php:7-fpm
 MAINTAINER Balazs Szabo <balazs.szabo@gmail.com>
 
 RUN apt-get update -yqq \
-  buildDeps=" \
+  && buildDeps=" \
     libjpeg62-turbo-dev \
     libpq-dev \
     libcurl4-openssl-dev \
@@ -16,7 +16,7 @@ RUN apt-get update -yqq \
     libkrb5-dev \
     libxml2-dev \
   " \
-  doNotUninstall=" \
+  && doNotUninstall=" \
     libmemcached11 \
     libmemcachedutil2 \
     libfreetype6 \
