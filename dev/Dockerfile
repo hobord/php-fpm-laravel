@@ -4,6 +4,7 @@ MAINTAINER Balazs Szabo <balazs.szabo@gmail.com>
 
 RUN apt-get update -yqq \
   && buildDeps=" \
+    libc-client2007e-dev \
     libjpeg62-turbo-dev \
     libpq-dev \
     libcurl4-openssl-dev \
@@ -17,6 +18,7 @@ RUN apt-get update -yqq \
     libxml2-dev \
   " \
   && doNotUninstall=" \
+    libc-client2007e \
     libmemcached11 \
     libmemcachedutil2 \
     libfreetype6 \
