@@ -25,10 +25,10 @@ RUN apt-get update -yqq \
     libhashkit2 \
     libjpeg62-turbo \
     libmcrypt4 \
-    libpng-0 \
     libpq5 \
   " \
   && apt-get install -y \
+    apt-utils \
     curl \
     git \
     unzip \
@@ -36,6 +36,8 @@ RUN apt-get update -yqq \
     less \
     $buildDeps \
     --no-install-recommends \
+  && pecl install mcrypt-1.0.1 \    
+  && docker-php-ext-enable mcrypt \  
   && docker-php-ext-configure gd \
     --enable-gd-native-ttf \
     --with-jpeg-dir=/usr/lib \
@@ -50,7 +52,6 @@ RUN apt-get update -yqq \
     mbstring \
     gd \
     iconv \
-    mcrypt \
     hash \
     sockets \
     dom \

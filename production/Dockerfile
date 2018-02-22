@@ -5,7 +5,6 @@ MAINTAINER Balazs Szabo <balazs.szabo@gmail.com>
 RUN apt-get update -yqq \
   && buildDeps=" \
     libc-client2007e-dev \
-    libmemcached-dev \
     libjpeg62-turbo-dev \
     libpq-dev \
     libcurl4-openssl-dev \
@@ -26,10 +25,10 @@ RUN apt-get update -yqq \
     libhashkit2 \
     libjpeg62-turbo \
     libmcrypt4 \
-    libpng-0 \
     libpq5 \
   " \
   && apt-get install -y \
+    apt-utils \
     curl \
     git \
     unzip \
@@ -37,6 +36,8 @@ RUN apt-get update -yqq \
     less \
     $buildDeps \
     --no-install-recommends \
+  && pecl install mcrypt-1.0.1 \    
+  && docker-php-ext-enable mcrypt \  
   && docker-php-ext-configure gd \
     --enable-gd-native-ttf \
     --with-jpeg-dir=/usr/lib \
@@ -51,7 +52,6 @@ RUN apt-get update -yqq \
     mbstring \
     gd \
     iconv \
-    mcrypt \
     hash \
     sockets \
     dom \
@@ -65,10 +65,8 @@ RUN apt-get update -yqq \
     curl \
   && pecl install redis \
   && pecl install mongodb \
-  && pecl install memcached \
   && docker-php-ext-enable redis \
   && docker-php-ext-enable mongodb \
-  && docker-php-ext-enable memcached \
   && pecl clear-cache \
   && curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
@@ -79,3 +77,4 @@ RUN apt-get update -yqq \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN usermod -u 1000 www-data
+
