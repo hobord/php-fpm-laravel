@@ -9,7 +9,7 @@ RUN apt-get update -yqq \
     libpq-dev \
     libcurl4-openssl-dev \
     libjpeg-dev \
-    libpng12-dev \
+    libpng-dev \
     libfreetype6-dev \
     libssl-dev \
     libmcrypt-dev \
@@ -25,7 +25,7 @@ RUN apt-get update -yqq \
     libhashkit2 \
     libjpeg62-turbo \
     libmcrypt4 \
-    libpng12-0 \
+    libpng-0 \
     libpq5 \
   " \
   && apt-get install -y \
